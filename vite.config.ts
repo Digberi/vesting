@@ -14,6 +14,12 @@ export default defineConfig({
     }),
   ],
 
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true
+    }
+  },
+
   resolve: {
     alias: [
       { find: '@api', replacement: path.resolve(__dirname, 'src/api') },
