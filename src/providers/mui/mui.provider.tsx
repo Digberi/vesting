@@ -7,6 +7,7 @@ import { observer } from 'mobx-react-lite';
 
 import { MuiComponents } from './mui.components';
 import { MuiPalettes } from './mui.palettes';
+import { MuiTypography } from './mui.typography';
 import { withStores } from '../../utils';
 
 const stores = {
@@ -18,7 +19,8 @@ const MuiProviderView: InjectedCFC<typeof stores> = ({ children, colorMode }) =>
     () =>
       createTheme({
         palette: MuiPalettes[colorMode.mode],
-        ...MuiComponents
+        ...MuiComponents,
+        ...MuiTypography
       }),
     [colorMode.mode]
   );

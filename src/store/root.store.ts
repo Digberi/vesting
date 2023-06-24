@@ -1,22 +1,16 @@
 import { ColorModeStore } from '@modules/color-mode';
-import { WagmiStore } from '@modules/wagmi';
 import { ConstructorOfValues } from '@types';
 import { makeAutoObservable } from 'mobx';
 
-import { UserStore, CounterStore } from './example';
 import { SnackStore } from './snack.store';
+import { TezosStore } from '../modules/tezos';
 
 export class RootStore {
   static map: Map<ConstructorOfValues<RootStore>, keyof RootStore> = new Map();
 
-  //#region examples
-  userStore = new UserStore();
-  counterStore = new CounterStore();
-  //#endregion
-
   //#region modules
   colorModeStore = new ColorModeStore();
-  wagmiStore = new WagmiStore();
+  beaconStore = new TezosStore();
   //#endregion
 
   snackStore = new SnackStore();
