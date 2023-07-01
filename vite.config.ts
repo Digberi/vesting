@@ -14,6 +14,7 @@ export default defineConfig({
     }),
   ],
 
+  //todo: add to template
   build: {
     commonjsOptions: {
       transformMixedEsModules: true

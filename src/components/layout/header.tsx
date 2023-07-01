@@ -1,8 +1,9 @@
-import { SyntheticEvent, useMemo } from 'react';
+import { useMemo } from 'react';
 
-import { AppBar, Container, Tab, Tabs, Link, Box } from '@mui/material';
+import { AppBar, Box, Link, Container, Tab, Tabs } from '@mui/material';
 import { matchPath, useLocation } from 'react-router-dom';
 
+import { ToggleColorMode } from '../ui';
 import { ConnectWallet } from '../ui/connect-wallet';
 
 interface Route {
@@ -10,6 +11,7 @@ interface Route {
   label: string;
 }
 
+//todo: deal with config repeating
 const routesConfig: Array<Route> = [
   {
     path: '/',
@@ -45,10 +47,6 @@ const useRoutesMatch = (routes: Array<Route>) => {
 export const Header = () => {
   const match = useRoutesMatch(routesConfig);
 
-  const handleChange = (_: SyntheticEvent, newValue: number) => {
-    console.log(newValue);
-  };
-
   return (
     <AppBar id={Header.name} position="static">
       <Container>
@@ -59,12 +57,15 @@ export const Header = () => {
             alignItems: 'center'
           }}
         >
-          <Tabs value={match} onChange={handleChange} aria-label="basic tabs example">
+          <Tabs value={match}>
             {routesConfig.map(route => (
               <Tab label={route.label} component={Link} key={route.path} href={route.path} />
             ))}
           </Tabs>
-          <ConnectWallet />
+          <Box sx={{ display: 'flex', gap: 2, p: 0.5 }}>
+            <ToggleColorMode />
+            <ConnectWallet />
+          </Box>
         </Box>
       </Container>
     </AppBar>

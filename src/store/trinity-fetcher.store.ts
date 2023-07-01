@@ -1,6 +1,7 @@
 import { Trinity } from '@types';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 
+//todo: add changes to template
 export class TrinityFetcherStore<Model extends object, FetchArgs extends unknown[] = unknown[]> {
   trinity: Trinity<Model>;
 
@@ -18,15 +19,22 @@ export class TrinityFetcherStore<Model extends object, FetchArgs extends unknown
   }
 
   async load(...args: FetchArgs) {
-    this.trinity.isLoading = true;
-    this.trinity.error = null;
+    runInAction(() => {
+      this.trinity.isLoading = true;
+      this.trinity.error = null;
+    });
 
     try {
-      this.trinity.data = await this.fetcher(...args);
+      const data = await this.fetcher(...args);
+      runInAction(() => {
+        this.trinity.data = data;
+      });
     } catch (error) {
       this.trinity.error = error as Error;
     } finally {
-      this.trinity.isLoading = false;
+      runInAction(() => {
+        this.trinity.isLoading = false;
+      });
     }
   }
 }

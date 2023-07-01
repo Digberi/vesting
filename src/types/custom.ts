@@ -33,3 +33,10 @@ type Values<Type extends Object> = Type[keyof Type];
 export type ConstructorOfValues<Type extends Object> = UnionToUnionOfConstructors<Values<Type>>;
 
 export type StoresMap<Type extends Object> = Record<string, ConstructorOfValues<Type>>;
+
+export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
+
+export enum SortOrder {
+  Asc = 'asc',
+  Desc = 'desc'
+}

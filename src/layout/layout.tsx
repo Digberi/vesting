@@ -1,8 +1,9 @@
+import { Header } from '@components';
 import { CFC } from '@types';
+//todo: add react-div-100vh to template
 import Div100vh from 'react-div-100vh';
 
 import { CContainer } from './container';
-import { Header } from '../components/base';
 
 export const Layout: CFC = ({ children }) => {
   return (

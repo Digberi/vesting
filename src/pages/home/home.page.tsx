@@ -1,6 +1,5 @@
+import { Vestings } from '@components';
 import { Box, Typography } from '@mui/material';
-
-import { ConnectWallet } from '../../components/ui/connect-wallet';
 
 export const HomePage = () => {
   return (
@@ -11,7 +10,7 @@ export const HomePage = () => {
       }}
     >
       <Typography variant="h1">Hello, world!</Typography>
-      <ConnectWallet />
+      <Vestings />
     </Box>
   );
 };
